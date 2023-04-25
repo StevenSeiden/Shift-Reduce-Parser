@@ -211,14 +211,38 @@
 </div>
 
 <script>
-    function step() {
-        const expression = document.getElementById("expression").value;
-        const table = document.getElementById("output");
+    function parse(expression){
+        var parsed = expression
+        return [parsed, expression];
+    }
+    function insertItem(table, element1, element2){
         const row = table.insertRow(-1);
         const col1 = row.insertCell(0);
         const col2 = row.insertCell(1);
-        col1.innerHTML = expression;
+        col1.innerHTML = element1;
+        col2.innerHTML = element2;
     }
+    function step() {
+        const table = document.getElementById("output");
+
+
+        if (table.rows.length === 0) {
+            insertItem(table, "0", document.getElementById("expression").value)
+            console.log("firstrow");
+
+        } else {
+
+            var expression = table.rows[table.rows.length-1].cells[1].innerHTML;
+
+            [parsed, expression] = parse(expression)
+            
+            insertItem(table, parsed, expression)
+
+        }
+
+
+    }
+
 </script>
 
 
