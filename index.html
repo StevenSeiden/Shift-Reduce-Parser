@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shift Reduce Parser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Shift Reduce Parser</h1>
+<p>CSC 4101 Honors Option</p>
+
+<div class="container">
+
+<table border="1" id="parser" style="
+    width: 500px;
+    height: 300px;">
+    <caption>Parser Table</caption>
+    <tr>
+        <th colspan = "1" scope="colgroup"></th>
+        <th colspan = "6" scope="colgroup">Action</th>
+        <th colspan = "3" scope="colgroup">Goto</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">State</th>
+        <td>id</td>
+        <td>+</td>
+        <td>*</td>
+        <td>(</td>
+        <td>)</td>
+        <td>$</td>
+        <td>E</td>
+        <td>T</td>
+        <td>F</td>
+    </tr>
+    <tr>
+        <th scope="row">0</th>
+        <th scope="row">S5</th>
+        <th></th>
+        <th></th>
+        <th>S4</th>
+        <th></th>
+        <th></th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th scope="row">1</th>
+        <th></th>
+        <th>S6</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>accept</th>
+        <th></th>
+        <th></th>
+        <th></th>
+
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <th></th>
+        <th>R2</th>
+        <th>R7</th>
+        <th></th>
+        <th>R2</th>
+        <th>R2</th>
+        <th></th>
+        <th></th>
+        <th></th>
+
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <th></th>
+        <th>R4</th>
+        <th>R4</th>
+        <th></th>
+        <th>R4</th>
+        <th>R4</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th scope="row">4</th>
+        <th>S5</th>
+        <th></th>
+        <th></th>
+        <th>S4</th>
+        <th></th>
+        <th></th>
+        <th>8</th>
+        <th>2</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th scope="row">5</th>
+        <th></th>
+        <th>R6</th>
+        <th>R6</th>
+        <th></th>
+        <th>R6</th>
+        <th>R6</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th scope="row">6</th>
+        <th>S5</th>
+        <th></th>
+        <th></th>
+        <th>S4</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>9</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th scope="row">7</th>
+        <th>S5</th>
+        <th></th>
+        <th></th>
+        <th>S4</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>10</th>
+    </tr>
+    <tr>
+        <th scope="row">8</th>
+        <th></th>
+        <th>S6</th>
+        <th></th>
+        <th></th>
+        <th>S11</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th scope="row">9</th>
+        <th></th>
+        <th>R1</th>
+        <th>S7</th>
+        <th></th>
+        <th>R1</th>
+        <th>R1</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th scope="row">10</th>
+        <th></th>
+        <th>R3</th>
+        <th>R3</th>
+        <th></th>
+        <th>R3</th>
+        <th>R3</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th scope="row">11</th>
+        <th></th>
+        <th>R5</th>
+        <th>R5</th>
+        <th></th>
+        <th>R5</th>
+        <th>R5</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    </tbody>
+</table>
+
+
+<div style="border: 1px solid black; width: 300px;">
+    <p style="margin-left: 15px">
+        Grammar<br><br>
+        1.E→E +T <br>
+        2. E → T <br>
+        3. T → T * F <br>
+        4. T → F <br>
+        5. F → (E) <br>
+        6. F → id </p>
+</div>
+
+</div>
+
+<div class="container">
+
+<table border="1" id="output" style="
+    width: 200px;">
+    <caption>Output</caption>
+</table>
+
+    <input type="text" id="expression" name="expression" placeholder="Enter an expression...">
+    <button onclick="step()">Step</button>
+
+</div>
+
+<script>
+    function step() {
+        var expression = document.getElementById("expression").value;
+        var table = document.getElementById("output");
+        var row = table.insertRow(-1);
+        var col1 = row.insertCell(0);
+        var col2 = row.insertCell(1);
+        col1.innerHTML = expression;
+    }
+</script>
+
+
+</body>
+</html>
