@@ -10,3 +10,8 @@ td, th {
     display: flex;
     flex-direction: row;
 }
+
+body {
+    background-image: url("136.png");
+    background-repeat: repeat;
+}
