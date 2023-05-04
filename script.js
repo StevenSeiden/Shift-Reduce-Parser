@@ -231,6 +231,10 @@ function step() {
         if (parsedArray.join("") === "0E1" && expression === "$") {
             document.getElementById("step").disabled = true;
             document.getElementById("finishedMessage").style.display = 'block';
+            oldState = JSON.parse(sessionStorage.getItem("oldState"));
+            oldAction = JSON.parse(sessionStorage.getItem("oldAction"));
+            document.getElementById('parser').rows[parseInt(oldState) + 2].cells[parseInt(oldAction)].style.backgroundColor = '';
+            document.getElementById('parser').rows[3].cells[6].style.backgroundColor = '#ffc3bf';
 
         }
 
