@@ -66,7 +66,7 @@
             <th scope="row">2</th>
             <td></td>
             <td>R2</td>
-            <td>R7</td>
+            <td>S7</td>
             <td></td>
             <td>R2</td>
             <td>R2</td>
@@ -208,8 +208,8 @@
         <caption>Output</caption>
     </table>
 
-    <input type="text" id="expression" name="expression" placeholder="Enter an expression..." value="id + id * id $">
-    <button onclick="step()">Step</button>
+    <input type="text" id="expression" name="expression" placeholder="Enter an expression..." value="id + ( id * id ) $">
+    <button onclick="step()" id="step">Step</button>
 
 </div>
 
@@ -218,7 +218,6 @@
     function getAction(expression) {
         console.log("getting action from" + expression);
         if (expression.substring(0, 2) === "id") {
-            console.log("id");
             return [1,"id"];
         }
 
@@ -257,16 +256,15 @@
     }
 
     function getState(parsed) {
-        console.log("crazy! " + parsed);
         if (parsed.substring(parsed.length - 2, parsed.length) === "11") {
-            console.log("eleven");
+            console.log("State eleven");
             return 11;
         } else if (parsed.substring(parsed.length - 2, parsed.length) === "10") {
-            console.log("ten");
+            console.log("State ten");
             return 10;
         }
 
-        console.log("neither: " + parsed.substring(parsed.length - 1, parsed.length));
+        console.log("Single digit state: " + parsed.substring(parsed.length - 1, parsed.length));
         return Number(parsed.substring(parsed.length - 1, parsed.length));
     }
 
@@ -305,79 +303,73 @@
         return "error";
     }
 
-    /*function grammerReplacement(grammar,parsed){
-        console.log("grammar evaled: " + grammar);
-        console.log("parsed: " + parsed);
-
-        switch (grammar)
-        {
-            case 1:
-                return [replaceItem(parsed,"E","E+T"),"E"];
-            case 2:
-                return [replaceItem(parsed,"E","T"),"E"];
-            case 3:
-                return [replaceItem(parsed,"T","T*F"),"T"];
-            case 4:
-                return [replaceItem(parsed,"T","F"),"T"];
-            case 5:
-                return [replaceItem(parsed,"F","(E)"),"F"];
-            case 6:
-                return [replaceItem(parsed,"F","id"),"F"];
-        }
-    }*/
 
     function grammerReplacement(grammar){
-        console.log("grammar evaled: " + grammar);
+        console.log("Grammar evaluated: " + grammar);
         //console.log("parsed: " + parsed);
 
         switch (grammar)
         {
             case "1":
-                return "E";
+                return ["E","+"];
             case "2":
-                return "E";
+                return ["E",""];
             case "3":
-                return "T";
+                return ["T","*"];
             case "4":
-                return "T";
+                return ["T",""];
             case "5":
-                return "F";
+                return ["F","("];
             case "6":
-                return "F";
+                return ["F",""];
         }
     }
 
     function reduce(parsed,expression,number){
 
 
+        let newItem;
+        let itemReplace;
 
-        console.log("jhahaha" + parsed);
-        console.log("number " + number);
+        [newItem, itemReplace] = grammerReplacement(number);
 
-        console.log("befparsed: "+parsed+" - "+number);
-
-        console.log("haah"+grammerReplacement(number));
-
-        parsed[parsed.length-2] = grammerReplacement(number);
-
-        parsed[parsed.length-3]
-        switch (parsed[parsed.length-2]){
-            case "E":
-                console.log("E!");
-                parsed[parsed.length-1]=document.getElementById('parser').rows[parsed[parsed.length-3] + 2].cells[7].textContent;
-                break;
-            case "T":
-                console.log("T!");
-                parsed[parsed.length-1]=document.getElementById('parser').rows[parsed[parsed.length-3] + 2].cells[8].textContent;
-                break;
-            case "F":
-                console.log("F!");
-                parsed[parsed.length-1]=document.getElementById('parser').rows[parsed[parsed.length-3] + 2].cells[9].textContent;
-                break;
+        if(itemReplace===""){
+            parsed[parsed.length-2] = newItem;
+        } else {
+           console.log("\n\nSpecial case!")
+            console.log("Looking for " + itemReplace);
+            for(let i = parsed.length; i >=0; i--){
+                console.log("Evaluating " + parsed[i]);
+               if(parsed[i]===itemReplace){
+                   console.log(itemReplace + " found at position " + i);
+                   parsed = parsed.slice(0,i);
+                   if(itemReplace==="("){
+                       parsed[parsed.length] = "F";
+                       parsed[parsed.length] = "-1";//TODO fix this patch
+                   }
+                   i=-1;
+               }
+            }
         }
 
 
-        console.log("theparsed: "+parsed);
+        switch (parsed[parsed.length-2]){
+            case "E":
+                console.log("E!");
+                console.log(parseInt(parseInt(parsed[parsed.length-3])) + 2);
+                parsed[parsed.length-1]=document.getElementById('parser').rows[parseInt(parsed[parsed.length-3]) + 2].cells[7].textContent;
+                break;
+            case "T":
+                console.log("T!");
+                console.log(parseInt(parseInt(parsed[parsed.length-3])) + 2);
+                parsed[parsed.length-1]=document.getElementById('parser').rows[parseInt(parsed[parsed.length-3]) + 2].cells[8].textContent;
+                break;
+            case "F":
+                console.log("F!");
+                parsed[parsed.length-1]=document.getElementById('parser').rows[parseInt(parsed[parsed.length-3]) + 2].cells[9].textContent;
+                break;
+        }
+
         //parsed = grammerReplacement(number, parsed);
 
 
@@ -398,12 +390,12 @@
         } else if (element.substring(0, 1) === "S") {
             console.log("Shifting");
             let arrToAdd;
-            [arrToAdd, expression] = shift(parsed,expression,element.substring(1, 2));
+            [arrToAdd, expression] = shift(parsed,expression,element.substring(1, element.length));
             parsed = parsed.concat(arrToAdd);
 
         } else if (element.substring(0, 1) === "R") {
             console.log("Reducing");
-            parsed = reduce(parsed,expression,element.substring(1, 2));
+            parsed = reduce(parsed,expression,element.substring(1, element.length));
         } else {
             console.log("Grammar");
             parsed = getGrammar(Number(element), parsed)[0];
@@ -423,8 +415,9 @@
 
 
     function step() {
-        console.log("\n\n\nTHEHTHTHTHEHEHEHHTEH");
-        //.join("")
+        console.log("\n\n\nBEGIN NEXT PARSE");
+
+
         const table = document.getElementById("output");
 
         let parsedArray = [];
@@ -432,33 +425,21 @@
             parsedArray = JSON.parse(sessionStorage.getItem("parsedArray"));
         }
 
-        //parsedArray.push("new item");
-
-
-        //console.log(parsedArray);
-
 
 
         if (table.rows.length === 0) {
             insertItem(table, "0", document.getElementById("expression").value)
             parsedArray = [0];
-            /*//parsedArray.push(0);
-            parsedArray[parsedArray.length] = 2;
-            //            parsedArray[parsedArray.length]=0;
-
-
-            console.log("Parsed array is now " + parsedArray.join(""));
-            parsedArray.pop();
-            console.log("Parsed array is now " + parsedArray.join(""));*/
-
-            console.log("firstrow");
 
 
         } else {
             console.log("Parsed array is now " + parsedArray);
             var expression = table.rows[table.rows.length - 1].cells[1].innerHTML;
-            var parsed = table.rows[table.rows.length - 1].cells[0].innerHTML;
             [parsedArray, expression] = parse(parsedArray, expression)
+
+            if(parsedArray.join("")==="0E1" && expression==="$"){
+                document.getElementById("step").disabled = true;
+            }
 
             insertItem(table, parsedArray.join(""), expression)
 
