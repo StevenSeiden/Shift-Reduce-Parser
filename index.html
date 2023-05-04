@@ -11,13 +11,11 @@
 <img alt="Shift Reduce Parser!" height="auto" src="logo.png"
      width="35%"/>
 <marquee direction="left"><p>CSC 4101 Honors Option</p></marquee>
-<h2 id="finishedMessage" style="display: none">Finished!</h2>
 
 <div class="container">
 
-    <table border="1" id="parser" style="
-    width: 500px;
-    height: 300px;">
+    <div>
+    <table border="1" id="parser">
         <caption>Parser Table</caption>
         <tr>
             <th colspan="1" scope="colgroup"></th>
@@ -188,30 +186,36 @@
         </tbody>
     </table>
 
+        <h2 id="finishedMessage" style="display: none">Finished!</h2>
+    </div>
+    <div>
+        <center><caption>Grammar</caption></center>
+        <div style="border: 1px solid black; width: 150px; height: 150px;margin-right: 10px">
+            <p style="margin-left: 15px">
+                1.E→E +T <br>
+                2. E → T <br>
+                3. T → T * F <br>
+                4. T → F <br>
+                5. F → (E) <br>
+                6. F → id
+            </p>
+        </div>
 
-    <div style="border: 1px solid black; width: 150px; height: 200px;">
-        <p style="margin-left: 15px">
-            Grammar<br><br>
-            1.E→E +T <br>
-            2. E → T <br>
-            3. T → T * F <br>
-            4. T → F <br>
-            5. F → (E) <br>
-            6. F → id </p>
+        <div style="height: 40px">
+            <input type="text" id="expression" name="expression" placeholder="Enter an expression..."
+                   value="id + ( id * id ) $"> <br>
+            <button onclick="step()" id="step">Step</button>
+        </div>
+
     </div>
 
     <div class="container">
 
-        <table border="1" id="output" style="
-    width: 300px;height:20px">
+        <table id="output" style="width: 300px; height:20px">
             <caption>Output</caption>
         </table>
 
-        <div style="height: 40px">
-        <input type="text" id="expression" name="expression" placeholder="Enter an expression..."
-               value="id + ( id * id ) $"> <br>
-        <button onclick="step()" id="step">Step</button>
-        </div>
+
 
     </div>
 
@@ -220,7 +224,6 @@
 
 
 <script src="script.js">
-
 
 </script>
 

@@ -1,8 +1,12 @@
 table {
     border-collapse: collapse;
+    width: 500px;
+    height: 300px;
+    margin-right: 10px
 }
 td, th {
-    border: 1px solid black;
+    color:black;
+    border: 2px solid grey;
     padding: 10px;
 }
 
@@ -14,4 +18,5 @@ td, th {
 body {
     background-image: url("136.png");
     background-repeat: repeat;
+
 }
