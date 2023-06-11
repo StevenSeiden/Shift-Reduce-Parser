@@ -30,3 +30,35 @@ td, th {
 caption {
     padding-bottom: 10px;
 }
+
+.grammarBox{
+    border: 1px solid #ddd;
+    width: 100%; max-width: 300px;
+    height: auto; margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+}
+
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: #151517;
+        color: white;
+    }
+    
+    table {
+        box-shadow: 0px 0px 5px 0px black;
+    }
+    
+    td, th {
+        color: white;
+        border: 1px solid #ddd;
+    }
+    
+    .grammarBox{
+        border: 1px solid #ddd;
+        box-shadow: 0px 0px 5px 0px black;
+    }
+
+}
