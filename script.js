@@ -1,4 +1,3 @@
-
 function getAction(expression) {
     console.log("getting action from" + expression);
     if (expression.substring(0, 2) === "id") {
@@ -79,11 +78,7 @@ function getFromTable(expression, parsed) {
     sessionStorage.setItem("oldAction", JSON.stringify(action.toString()));
 
 
-
-
     return document.getElementById('parser').rows[state + 2].cells[action].textContent;
-
-
 
 
 }
@@ -234,7 +229,7 @@ function step() {
             oldState = JSON.parse(sessionStorage.getItem("oldState"));
             oldAction = JSON.parse(sessionStorage.getItem("oldAction"));
             document.getElementById('parser').rows[parseInt(oldState) + 2].cells[parseInt(oldAction)].style.backgroundColor = '';
-            document.getElementById('parser').rows[3].cells[6].style.backgroundColor = '#ffc3bf';
+            document.getElementById('parser').rows[3].cells[6].style.backgroundColor = '#9bfc92';
 
         }
 

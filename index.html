@@ -4,193 +4,194 @@
     <meta charset="UTF-8">
     <title>Shift Reduce Parser</title>
     <link href=favicon.ico? rel="shortcut icon" type=image/x-icon>
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <!--<h1>Shift Reduce Parser</h1>-->
-<img alt="Shift Reduce Parser!" height="auto" src="logo.png"
-     width="35%"/>
-<marquee direction="left"><p>CSC 4101 Honors Option</p></marquee>
+<h1 style="padding-left: 15px">Shift Reduce Parser</h1>
+<h2 style="padding-left: 15px">LSU CSC 4101 Honors Option</h2>
 
 <div class="container">
 
     <div>
-    <table border="1" id="parser">
-        <caption>Parser Table</caption>
-        <tr>
-            <th colspan="1" scope="colgroup"></th>
-            <th colspan="6" scope="colgroup">Action</th>
-            <th colspan="3" scope="colgroup">Goto</th>
+        <table border="1" id="parser">
+            <caption>Parser Table</caption>
+            <tr>
+                <th colspan="1" scope="colgroup"></th>
+                <th colspan="6" scope="colgroup">Action</th>
+                <th colspan="3" scope="colgroup">Goto</th>
 
-        </tr>
-        <tbody>
-        <tr>
-            <th scope="row">State</th>
-            <td>id</td>
-            <td>+</td>
-            <td>*</td>
-            <td>(</td>
-            <td>)</td>
-            <td>$</td>
-            <td>E</td>
-            <td>T</td>
-            <td>F</td>
-        </tr>
-        <tr>
-            <th scope="row">0</th>
-            <td>S5</td>
-            <td></td>
-            <td></td>
-            <td>S4</td>
-            <td></td>
-            <td></td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td></td>
-            <td>S6</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>accept</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            </tr>
+            <tbody>
+            <tr>
+                <th scope="row">State</th>
+                <td>id</td>
+                <td>+</td>
+                <td>*</td>
+                <td>(</td>
+                <td>)</td>
+                <td>$</td>
+                <td>E</td>
+                <td>T</td>
+                <td>F</td>
+            </tr>
+            <tr>
+                <th scope="row">0</th>
+                <td>S5</td>
+                <td></td>
+                <td></td>
+                <td>S4</td>
+                <td></td>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td>S6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>accept</td>
+                <td></td>
+                <td></td>
+                <td></td>
 
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td></td>
-            <td>R2</td>
-            <td>S7</td>
-            <td></td>
-            <td>R2</td>
-            <td>R2</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td></td>
+                <td>R2</td>
+                <td>S7</td>
+                <td></td>
+                <td>R2</td>
+                <td>R2</td>
+                <td></td>
+                <td></td>
+                <td></td>
 
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td></td>
-            <td>R4</td>
-            <td>R4</td>
-            <td></td>
-            <td>R4</td>
-            <td>R4</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>S5</td>
-            <td></td>
-            <td></td>
-            <td>S4</td>
-            <td></td>
-            <td></td>
-            <td>8</td>
-            <td>2</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td></td>
-            <td>R6</td>
-            <td>R6</td>
-            <td></td>
-            <td>R6</td>
-            <td>R6</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">6</th>
-            <td>S5</td>
-            <td></td>
-            <td></td>
-            <td>S4</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>9</td>
-            <td>3</td>
-        </tr>
-        <tr>
-            <th scope="row">7</th>
-            <td>S5</td>
-            <td></td>
-            <td></td>
-            <td>S4</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>10</td>
-        </tr>
-        <tr>
-            <th scope="row">8</th>
-            <td></td>
-            <td>S6</td>
-            <td></td>
-            <td></td>
-            <td>S11</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">9</th>
-            <td></td>
-            <td>R1</td>
-            <td>S7</td>
-            <td></td>
-            <td>R1</td>
-            <td>R1</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">10</th>
-            <td></td>
-            <td>R3</td>
-            <td>R3</td>
-            <td></td>
-            <td>R3</td>
-            <td>R3</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">11</th>
-            <td></td>
-            <td>R5</td>
-            <td>R5</td>
-            <td></td>
-            <td>R5</td>
-            <td>R5</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td></td>
+                <td>R4</td>
+                <td>R4</td>
+                <td></td>
+                <td>R4</td>
+                <td>R4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>S5</td>
+                <td></td>
+                <td></td>
+                <td>S4</td>
+                <td></td>
+                <td></td>
+                <td>8</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td></td>
+                <td>R6</td>
+                <td>R6</td>
+                <td></td>
+                <td>R6</td>
+                <td>R6</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>S5</td>
+                <td></td>
+                <td></td>
+                <td>S4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>9</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td>S5</td>
+                <td></td>
+                <td></td>
+                <td>S4</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <th scope="row">8</th>
+                <td></td>
+                <td>S6</td>
+                <td></td>
+                <td></td>
+                <td>S11</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">9</th>
+                <td></td>
+                <td>R1</td>
+                <td>S7</td>
+                <td></td>
+                <td>R1</td>
+                <td>R1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">10</th>
+                <td></td>
+                <td>R3</td>
+                <td>R3</td>
+                <td></td>
+                <td>R3</td>
+                <td>R3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">11</th>
+                <td></td>
+                <td>R5</td>
+                <td>R5</td>
+                <td></td>
+                <td>R5</td>
+                <td>R5</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
         <h2 id="finishedMessage" style="display: none">Finished!</h2>
     </div>
     <div>
-        <center><caption>Grammar</caption></center>
-        <div style="border: 1px solid black; width: 150px; height: 150px;margin-right: 10px">
+        <center>
+            <caption>Grammar</caption>
+        </center>
+        <div style="border: 1px solid #ddd; width: 100%; max-width: 300px; height: auto; margin: 10px auto; border-radius: 5px; box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);">
             <p style="margin-left: 15px">
                 1.E→E +T <br>
                 2. E → T <br>
@@ -202,9 +203,9 @@
         </div>
 
         <div style="height: 40px">
-            <input type="text" id="expression" name="expression" placeholder="Enter an expression..."
+            <input id="expression" name="expression" placeholder="Enter an expression..." type="text"
                    value="id + ( id * id ) $"> <br>
-            <button onclick="step()" id="step">Step</button>
+            <button id="step" onclick="step()">Step</button>
         </div>
 
     </div>
@@ -216,11 +217,9 @@
         </table>
 
 
-
     </div>
 
 </div>
-
 
 
 <script src="script.js">
